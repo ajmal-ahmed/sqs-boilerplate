@@ -14,7 +14,7 @@ Make sure you have [npm](http://npmjs.org/).
 3. Add `.env` and set your AWS credentials (see .env.sample file to know all the variables used).
 4. `npm start`
 5. Open `localhost:PORT` in your browser to test-client creation and file upload
-6. Start hacking!
+6. Start coding!
 
 ## Find your way around
 
@@ -22,3 +22,21 @@ Make sure you have [npm](http://npmjs.org/).
 * `sqsconsumer.js` - SQS consumer
 * `lib/` - library functions
 * `routes/index.js` - Primary endpoints
+
+### API Endpoints
+
+
+Path | Method | Details
+--- | --- | ---
+/api/generate | **GET** | Returns a unique client Id
+/api/uploads/:clientId | **POST** | Post csv via `csvField` in body
+/api/:clientId | **GET** | Returns Json data obtained via csv
+
+
+### Tech Stack
+- Node.js
+- Exprees.js
+- AWS SQS
+- DynamoDB
+- S3
+
