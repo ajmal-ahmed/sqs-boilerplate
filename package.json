@@ -1,0 +1,30 @@
+{
+  "name": "csv-client",
+  "version": "1.0.0",
+  "description": "aws s3 sqs dynamodb",
+  "main": "index.js",
+  "scripts": {
+    "start-main-app": "node ./index.js",
+    "start-sqs-consumer": "node ./sqsconsumer.js",
+    "start": "npm-run-all -p -r start-main-app start-sqs-consumer",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "aws",
+    "s3",
+    "sqs",
+    "dynamodb"
+  ],
+  "author": "Ajmal Ahamed",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.727.1",
+    "csvtojson": "^2.0.10",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.9",
+    "npm-run-all": "^4.1.5",
+    "sqs-consumer": "^5.4.0",
+    "uniqid": "^5.2.0"
+  }
+}

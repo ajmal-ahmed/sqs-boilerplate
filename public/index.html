@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+
+    <div id="create_client" style="margin-top:100px">
+        <h2>Create client</h2>
+        <button id="clientgen">generate client id </button>
+        <div id="clientid" style="background: #a2a2a2;">
+
+        </div>
+        <div id="main"></div>
+        <div id="notification-bar" style="margin-top: 20px;background:#69f0ae;color: #424242;"></div>
+
+    </div>
+
+    <div id="upload_csv" style="margin-top:100px">
+        <h2>Upload csv</h2>
+        <form id='uploadForm' action='/api/uploads/' method='post' encType="multipart/form-data">
+            <input type="file" name="csvField" accept=".csv,application/vnd.ms-excel" />
+            <input type='submit' value='Upload!' />
+        </form>
+
+    </div>
+    <div id="main"></div>
+    <div id="csv_response" style="margin-top: 20px;background:#69f0ae;color: #424242;"></div>
+
+    </div>
+
+</body>
+<script>
+    $(document).ready(function () {
+        $("#clientgen").click(function () {
+            event.preventDefault();
+
+            $.ajax("/api/generate", {
+                success: function (data) {
+                    console.log(data)
+                    $('#main').html($(data).find('#main *'));
+                    if (data.clientId) {
+                        $('#notification-bar').text("CLIENT GENERATED - " + data.clientId);
+                        document.getElementById('uploadForm').action = "/api/uploads/" + data.clientId;
+                    }
+
+                },
+                error: function () {
+                    $('#notification-bar').text('an error,occured,Bad request');
+                }
+            });
+        });
+    });
+</script>
+
+</html>
